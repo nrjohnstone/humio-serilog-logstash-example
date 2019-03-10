@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  logstash:
+    image: logstash:6.6.0
+    ports:
+      - "19501:19501"
+    environment:
+      - BALANCE=leastconn
+      - XPACK_MONITORING_ENABLED=false
+      - HUMIO_INGEST_TOKEN=${HUMIO_INGEST_TOKEN}
+    volumes:
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
